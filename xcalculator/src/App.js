@@ -1,25 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
+import Button from './Button';
+
+
 
 function App() {
+
+  const [result, setResult] = useState('');
+  const [query, setQuery] = useState('');
+
+  const names = ['7','8','9','+','4','5','6','-','1','2','3','*','C','0','=','/'];
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>React Calculator</h1>
+      <input type="text" value={query} readOnly/>
+      <div>{result}</div>
+      <div className='container'>
+
+        {names.map((name)=>{ 
+          return <Button key={name} name={name} query={query} setQuery={setQuery} setResult={setResult}/>
+          })
+        }
+      
+      
+      </div>
     </div>
-  );
+    );
 }
 
 export default App;
